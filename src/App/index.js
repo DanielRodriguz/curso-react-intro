@@ -33,19 +33,51 @@ function App() {
 
   return (
     <>
-      <TodoHeader>
+      <TodoHeader loading={loading}>
         <TodoCounter
           totalTodos={totalTodos}
           completedTodos={completedTodos}
+          // loading={loading}
         />
         <TodoSearch
           searchValue={searchValue}
           setSearchValue={setSearchValue}
+          // loading={loading}
+
         />
       </TodoHeader>
 
 
-      <TodoList>
+      <TodoList
+        error={error}
+        loading={loading}
+        searchedTodos={searchedTodos}
+        totalTodos={totalTodos}
+        searchText={searchValue}
+        onError={() => <TodosError />}
+        onLoading={() => (
+          <>
+            <TodosLoading />
+            <TodosLoading />
+            <TodosLoading />
+          </>
+        )}
+        onEmptyTodos={() => <EmptyTodos />}
+        onEmptySearchResults={
+          (searchText) => <p>No hay resultados para {searchText}</p>
+        }
+        render={todo => (
+          <TodoItem
+            key={todo.text}
+            text={todo.text}
+            completed={todo.completed}
+            onComplete={() => completeTodo(todo.text)}
+            onDelete={() => deleteTodo(todo.text)}
+          />
+        )}
+      />
+
+      {/* <TodoList>
         {loading && (
           <>
             <TodosLoading />
@@ -53,6 +85,7 @@ function App() {
             <TodosLoading />
           </>
         )}
+
         {error && <TodosError />}
         {(!loading && searchedTodos.length === 0) && <EmptyTodos />}
 
@@ -65,7 +98,7 @@ function App() {
             onDelete={() => deleteTodo(todo.text)}
           />
         ))}
-      </TodoList>
+      </TodoList> */}
 
       <CreateTodoButton
         setOpenModal={setOpenModal}
