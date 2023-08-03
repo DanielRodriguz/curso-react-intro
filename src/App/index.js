@@ -16,21 +16,28 @@ import { ChangeAlert } from '../ChangeAlert';
 
 function App() {
   const {
-    error,
+    state,
+    stateUpdaters
+  } = useTodos();
+
+  const {
     loading,
-    searchedTodos,
-    completeTodo,
-    deleteTodo,
-    openModal,
-    setOpenModal,
+    error,
     totalTodos,
     completedTodos,
     searchValue,
+    searchedTodos,
+    openModal,
+  } = state
+
+  const {
     setSearchValue,
     addTodo,
+    completeTodo,
+    deleteTodo,
+    setOpenModal,
     sincronizeTodos
-  } = useTodos();
-
+  } = stateUpdaters
 
 
   return (
@@ -39,12 +46,12 @@ function App() {
         <TodoCounter
           totalTodos={totalTodos}
           completedTodos={completedTodos}
-          // loading={loading}
+        // loading={loading}
         />
         <TodoSearch
           searchValue={searchValue}
           setSearchValue={setSearchValue}
-          // loading={loading}
+        // loading={loading}
 
         />
       </TodoHeader>
@@ -114,8 +121,8 @@ function App() {
         </Modal>
       )}
 
-      <ChangeAlert 
-        sincronize ={sincronizeTodos}      
+      <ChangeAlert
+        sincronize={sincronizeTodos}
       />
 
     </>
