@@ -1,20 +1,20 @@
 import React from 'react';
-import { TodoCounter } from '../TodoCounter';
-import { TodoSearch } from '../TodoSearch';
-import { TodoList } from '../TodoList';
-import { TodoItem } from '../TodoItem';
-import { CreateTodoButton } from '../CreateTodoButton';
-import { TodosLoading } from '../TodosLoading';
-import { TodosError } from '../TodosError';
-import { EmptyTodos } from '../EmptyTodos';
-import { useTodos } from './useTodos';
-import { Modal } from '../Modal';
-import { TodoForm } from '../TodoForm';
-import { TodoHeader } from '../TodoHeader';
-import { ChangeAlert } from '../ChangeAlert';
+import { useTodos } from '../useTodos';
+import { TodoCounter } from '../../ui/TodoCounter';
+import { TodoSearch } from '../../ui/TodoSearch';
+import { TodoList } from '../../ui/TodoList';
+import { TodoItem } from '../../ui/TodoItem';
+import { CreateTodoButton } from '../../ui/CreateTodoButton';
+import { TodosLoading } from '../../ui/TodosLoading';
+import { TodosError } from '../../ui/TodosError';
+import { EmptyTodos } from '../../ui/EmptyTodos';
+import { Modal } from '../../ui/Modal';
+import { TodoForm } from '../../ui/TodoForm';
+import { TodoHeader } from '../../ui/TodoHeader';
+import { ChangeAlert } from '../../ui/ChangeAlert';
 
 
-function App() {
+function HomePage() {
   const {
     state,
     stateUpdaters
@@ -131,4 +131,4 @@ function App() {
 
 
 
-export default App;
+export {HomePage};
