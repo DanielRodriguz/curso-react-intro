@@ -12,9 +12,11 @@ import { Modal } from '../../ui/Modal';
 import { TodoForm } from '../../ui/TodoForm';
 import { TodoHeader } from '../../ui/TodoHeader';
 import { ChangeAlert } from '../../ui/ChangeAlert';
+import { useNavigate } from 'react-router-dom';
 
 
 function HomePage() {
+  const navigate = useNavigate()
   const {
     state,
     stateUpdaters
@@ -27,15 +29,15 @@ function HomePage() {
     completedTodos,
     searchValue,
     searchedTodos,
-    openModal,
+    // openModal,
   } = state
 
   const {
     setSearchValue,
-    addTodo,
+    // addTodo,
     completeTodo,
     deleteTodo,
-    setOpenModal,
+    // setOpenModal,
     sincronizeTodos
   } = stateUpdaters
 
@@ -80,47 +82,31 @@ function HomePage() {
             key={todo.id}
             text={todo.text}
             completed={todo.completed}
-            onEdit={()=>console.log('Editar')}
+            onEdit={()=>{
+              navigate('/edit/'+todo.id,
+              {
+                state: {todo}
+              },)}}
             onComplete={() => completeTodo(todo.id)}
             onDelete={() => deleteTodo(todo.id)}
           />
         )}
       />
 
-      {/* <TodoList>
-        {loading && (
-          <>
-            <TodosLoading />
-            <TodosLoading />
-            <TodosLoading />
-          </>
-        )}
 
-        {error && <TodosError />}
-        {(!loading && searchedTodos.length === 0) && <EmptyTodos />}
-
-        {searchedTodos.map(todo => (
-          <TodoItem
-            key={todo.text}
-            text={todo.text}
-            completed={todo.completed}
-            onComplete={() => completeTodo(todo.text)}
-            onDelete={() => deleteTodo(todo.text)}
-          />
-        ))}
-      </TodoList> */}
 
       <CreateTodoButton
-        setOpenModal={setOpenModal}
+        onClick={() => navigate('/new')}
+        // setOpenModal={setOpenModal}
       />
-      {openModal && (
+      {/* {openModal && (
         <Modal>
           <TodoForm
             addTodo={addTodo}
             setOpenModal={setOpenModal}
           />
         </Modal>
-      )}
+      )} */}
 
       <ChangeAlert
         sincronize={sincronizeTodos}
